@@ -1,7 +1,7 @@
 # Docker OpenVPN Client for Mikrotik
 ## What is this and what does it do?
 RouterOS has several limitations in their openVPN implementation (for ex. doesn't support tls-auth).
-This docker image can be run directly on mirotik and bring openvpn connections without any limitation from RouterOS.
+This docker image can be run directly on mikrotik and bring openvpn connections without any limitation from RouterOS.
 This image can bring up multiple tunnels.
 
 ## How do I use it on my Mikrotik?
@@ -9,9 +9,9 @@ This image can bring up multiple tunnels.
 Enable docker containers on you Mikrotik using official documantation: https://help.mikrotik.com/docs/display/ROS/Container
 
 ### Prepaire the config file(s)
-Prepaire the working openvpn config/configs (with all cert files if required). You can test your config on any linux openvpvn.
-Put the config/configs in a separate directory. This image will scan this directory for *.ovpn and *.conf files and bring a separate tunnel for each config found.
-If user/password authentification is required for your tunnel, you need to create a separate file with credentials and put it's name to 'auth-user-pass' directive of openvpn config.
+Prepaire the working openvpn config/configs (with all cert files if required). You can test your config on any linux openvpn.
+Put the config(s) in a separate directory. This container will scan this directory for *.ovpn and *.conf files and bring a separate tunnel for each config found.
+If user/password authentification is required for your tunnel, you need to create a separate file with credentials and put it's name to 'auth-user-pass' directive of openvpn config (refer to config exmaples).
 
 ### Running the container
 Put directory containing openvpvn config files (and all other cert/auth files) to you mikrotik storage (internal or USB).
@@ -28,8 +28,8 @@ Start the container (and optionally enable logging):
 /container/set 0 logging=yes
 /container/start 0
 ```
-Container will try to bring up an openvpn tunnels for each config in you mount directory.
-Container also already has a NAT enabled, so you can route traffik thru running container.
+Container will try to bring up an openvpn tunnel for each config in you mount directory.
+Container also has a NAT enabled, so you can route traffic thru running container.
 
 
 ## Test image on PC
@@ -70,10 +70,10 @@ auth SHA224
 tls-client
 client
 resolv-retry infinite
-remote cau.hostfarm.ch 1194 udp
+remote 8.8.8.8 1194 udp
 verify-x509-name "OpenVPN" name
 auth-user-pass my_credentials.auth
-pkcs12 pkcs122cert.p12
+pkcs12 pkcs12cert.p12
 tls-auth tls.key 1
 remote-cert-tls server
 lport 0
