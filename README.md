@@ -3,6 +3,7 @@
 RouterOS has several limitations in their openVPN implementation (for ex. doesn't support tls-auth).
 This docker image can be run directly on mikrotik and bring openvpn connections without any limitation from RouterOS.
 This image can bring up multiple tunnels.
+Link to docker hub: https://hub.docker.com/r/sergeyrim/mikrotik-openvpn-client
 
 ## How do I use it on my Mikrotik?
 ### Get your Mikrotik ready to run docker containers
