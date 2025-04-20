@@ -69,4 +69,7 @@ do
     #openvpn_child[${i}]=$!
 done
 
+sleep 10
+
+ip a
 wait < <(jobs -p)
